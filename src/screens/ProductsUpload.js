@@ -10,17 +10,39 @@ import {
     TouchableOpacity,
     TextInput,
 
-    Button
+    Button,
+    Keyboard
 } from 'react-native';
+import DataList from "./DataList";
 import ImagePicker from 'react-native-image-picker';
-function ProductsUpload() {
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState('')
-    const [stock, setStock] = useState('')
-    const [description, setDescription] = useState('')
-    const [productcontactinfo, setProductcontactinfo] = useState('')
-    const [category, setCategory] = useState('')
-    const [seller, setseller] = useState('')
+import { launchImageLibrary } from 'react-native-image-picker'
+function ProductsUpload({ navigation }) {
+    const [name, setName] = useState()
+    const [price, setPrice] = useState()
+    const [stock, setStock] = useState()
+    const [description, setDescription] = useState()
+    const [productcontactinfo, setProductcontactinfo] = useState()
+    const [category, setCategory] = useState()
+    const [seller, setseller] = useState()
+    const [taskItem, setTaskItem] = useState([
+        {
+            "name": "",
+            "price": "",
+            "description": "",
+            "productcontactinfo": "",
+            "category": "",
+            "seller": "",
+            "stock": "",
+        }
+    ])
+
+    const HnaleTask = () => {
+        Keyboard.dismiss();
+        setTaskItem([...taskItem, (name, price, description, productcontactinfo, category, seller, stock)])
+        setName(null);
+    }
+
+
     let options = {
         title: 'Select Image',
         customButtons: [
@@ -112,6 +134,17 @@ function ProductsUpload() {
                     onChangeText={text => setseller(text)}
                     price={seller}
                     value={seller} />
+            </View>
+            <View style={{ marginTop: 20, width: '20%', height: 30, alignItems: 'center', justifyContent: 'center', borderRadius: 20, borderColor: 'red', borderWidth: 1 }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate('DataList');
+                        HnaleTask()
+                    }}>
+                    <Text style={{ color: 'white' }}>
+                        Submit
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     )

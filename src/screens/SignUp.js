@@ -14,9 +14,10 @@ import {
 } from 'react-native';
 import Styles from '../styles/Styles.js';
 function SignUp({ navigation }) {
-    const [userName, onChangeuserName] = React.useState([]);
-    const [pasword, onChangepasword] = React.useState([]);
-    const [contact, onChangeContact] = React.useState([]);
+    const [userName, onChangeuserName] = React.useState();
+    const [pasword, onChangepasword] = React.useState();
+    const [checkpasword, checkonChangepasword] = React.useState();
+    const [contact, onChangeContact] = React.useState();
     return (
         <View style={Styles.container}>
             <Image style={{ height: 200, width: 200, borderRadius: 20, marginBottom: 100 }} source={require('../assets/geek2.jpeg')} />
@@ -44,9 +45,9 @@ function SignUp({ navigation }) {
                 <TextInput style={{ color: 'white' }}
                     placeholder={'Confirm Pasword'}
                     placeholderTextColor='white'
-                    onChangeText={text => onChangepasword(text)}
-                    pasword={pasword}
-                    value={pasword}
+                    onChangeText={text => checkonChangepasword(text)}
+                    pasword={checkpasword}
+                    value={checkpasword}
                 />
 
             </View>
